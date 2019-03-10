@@ -1,0 +1,5 @@
+.idea/*
+xuexi.py
+Pipfile
+Pipfile.lock
+db.sqlite3
