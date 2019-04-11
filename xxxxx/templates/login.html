@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_css %}
+    <link href="{% static 'signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>login</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if msg %}
+    {{ msg }}
+    {% endif %}
+
+      <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      {% csrf_token %}
+          <br/>
+      <a href="{% url 'register' %}">register an account?</a>
+          <br/>
+      <a href="{% url 'reset_password' %}">reset password?</a>
+      </form>
+
+{% endblock %}
