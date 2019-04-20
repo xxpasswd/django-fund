@@ -135,6 +135,6 @@ AUTHENTICATION_BACKENDS = ['user.views.CustomBackend']
 
 EMAIL_HOST = 'smtp.sina.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'pfei_xy@sina.com'
-EMAIL_HOST_PASSWORD = 'wbetterfor@55'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
