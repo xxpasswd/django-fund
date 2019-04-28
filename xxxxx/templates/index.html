@@ -5,5 +5,39 @@
 {% endblock %}
 
 {% block content %}
-    welcome!!!
+{% for code,name,x,y in item %}
+<canvas id="myChart{{ code }}" width="400" height="100"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart{{ code }}');
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ x|safe }},
+        datasets: [{
+            label: '# of Votes',
+            data: {{ y|safe }},
+            backgroundColor: [
+        		'rgba(0, 0, 0, 0)'
+            ],
+            pointStyle: 'line',
+            borderColor: [
+                'rgb(255,0,0)'
+            ],
+            borderWidth: 1,
+            lineTension: 0
+        },
+            {
+                label: 'time',
+                data: [{x: '2019-01-09', y: '1.5'}],
+                pointStyle: 'circle',
+                borderColor: [
+                    'rgb(255,0,0)'
+                ]
+            }]
+    }
+});
+</script>
+{% endfor %}
 {% endblock %}
