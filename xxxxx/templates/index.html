@@ -16,7 +16,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {{ x|safe }},
         datasets: [{
-            label: '# of Votes',
+            label: '{{ name }}({{ code }})   {{ x|last }}',
             data: {{ y|safe }},
             backgroundColor: [
         		'rgba(0, 0, 0, 0)'
@@ -28,14 +28,15 @@ var myChart = new Chart(ctx, {
             borderWidth: 1,
             lineTension: 0
         },
-            {
-                label: 'time',
-                data: [{x: '2019-01-09', y: '1.5'}],
-                pointStyle: 'circle',
-                borderColor: [
-                    'rgb(255,0,0)'
-                ]
-            }]
+            {#{#}
+            {#    label: 'time',#}
+            {#    data: [{x: '2019-01-09', y: '1.5'}],#}
+            {#    pointStyle: 'circle',#}
+            {#    borderColor: [#}
+            {#        'rgb(255,0,0)'#}
+            {#    ]#}
+            {# }#}
+            ]
     }
 });
 </script>

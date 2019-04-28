@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 from user.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('login', user_login, name='login'),
     path('logout', user_logout, name='logout'),
     path('register', RegisterView.as_view(), name='register'),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('get_token/<str:token>', GetTokenView.as_view(), name='get_token'),
     path(r'captcha/', include('captcha.urls')),
 
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    # path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', RedirectView.as_view(url='fund/')),
     path('fund/', include(('fund.urls', 'fund'), namespace='fund'))
 ]

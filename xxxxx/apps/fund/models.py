@@ -7,10 +7,13 @@ from user.models import UserProfile
 
 
 class Fund(models.Model):
-    code = models.ImageField(max_length=10, help_text='基金code')
+    code = models.CharField(max_length=10, help_text='基金code')
     name = models.CharField(max_length=30, blank=True, null=True, help_text='基金名称')
     is_valid = models.BooleanField(default=True)
     add_time = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return '<<{}>>{}'.format(self.code, self.name)
 
 
 class FundDetail(models.Model):
