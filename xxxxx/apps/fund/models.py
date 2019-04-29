@@ -23,7 +23,7 @@ class FundDetail(models.Model):
 
 
 class UserFund(models.Model):
-    code = models.ForeignKey(Fund, on_delete=models.CASCADE)
+    code = models.OneToOneField(Fund, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     is_valid = models.BooleanField(default=True)
     monitor = models.BooleanField(default=True)

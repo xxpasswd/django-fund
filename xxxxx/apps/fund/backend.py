@@ -25,7 +25,7 @@ class FundHelper:
             try:
                 res = requests.get(url, timeout=5)
                 break
-            except TimeoutError:
+            except requests.ReadTimeout:
                 pass
         else:
             return code, 0, [0], [1]
@@ -35,8 +35,8 @@ class FundHelper:
         name, content = re.findall(pattern, res.text)[0]
         data = eval(content)
 
-        timestamp = [i.get('x') for i in data][-400:]
-        y = [i.get('y') for i in data][-400:]
+        timestamp = [i.get('x') for i in data][-401:]
+        y = [i.get('y') for i in data][-401:]
         x = [datetime.datetime.fromtimestamp(i / 1000).strftime('%Y-%m-%d') for i in timestamp]
 
         cache.set(code, (code, name, x, y), 600)
