@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>article</title>
+    <style>
+        .aaaa {
+            text-align: left;
+            padding: 5px 0px 5px 100px;
+            font-family: "华文行楷";
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% for id, name in articles %}
+    <div class="aaaa">
+        <a href="{% url 'article:detail' id %}"><h2>{{ forloop.counter }}、{{ name }}</h2></a>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block customer_js %}
+{% endblock %}
