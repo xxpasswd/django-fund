@@ -17,8 +17,6 @@ EOF
 uwsgi --ini uwsgi.ini
 
 
-mv /etc/nginx/sites-enabled/default /etc/nginx/site-enabled/default.back
-
 cat >>default <<EOF
 upstream uwsgi {
             server 127.0.0.1:8000;
@@ -36,5 +34,10 @@ server {
                 alias /code/xxxxx/staticfiles/;
                 }
 }
+EOF
+
+ln -sf default /etc/nginx/sites-enabled/default
 
 service nginx restart
+
+tail -f /var/log/nginx/access.log
