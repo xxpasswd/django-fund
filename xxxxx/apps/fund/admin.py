@@ -21,7 +21,7 @@ def add_to_user_monitor(modeladmin, request, queryset):
         try:
             UserFund.objects.create(code=q, user=user, status=2)
         except IntegrityError:
-            UserFund.objects.filter(code=q).update(status=2)
+            pass
 
 
 @admin.register(Fund)
