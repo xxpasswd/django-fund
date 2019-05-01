@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 
 from .models import Article
@@ -21,22 +21,20 @@ class ArticleAddView(View):
     def post(self, request):
         title = request.POST.get('title', 'test')
         content = request.POST.get('content')
-        Article.objects.create(title=title, content=content)
-        return render(request, 'article_add.html')
+        a = Article.objects.create(title=title, content=content)
+        return redirect(reverse('article:detail', args=(a.id,)))
 
 
 class ArticleDetailView(View):
     def get(self, request, id):
         a = Article.objects.get(pk=id)
-        content = a.content
-        return render(request, 'article_detail.html', {'content': content})
+        return render(request, 'article_detail.html', {'article': a})
 
 
 class ArticleModifyView(View):
     def get(self, request, id):
         a = Article.objects.get(pk=id)
-        content = a.content
-        return render(request, 'article_detail.html', {'content': content})
+        return render(request, 'article_modify.html', {'article': a})
 
     def post(self, request, id):
         a = Article.objects.get(pk=id)
@@ -45,4 +43,4 @@ class ArticleModifyView(View):
         a.title = title
         a.content = content
         a.save()
-        return render(request, 'article_add.html')
+        return redirect(reverse('article:detail', args=(a.id,)))

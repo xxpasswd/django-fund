@@ -12,3 +12,6 @@ class Article(models.Model):
     is_valid = models.BooleanField(default=True)
     add_time = models.DateTimeField(default=datetime.now)
     update_time = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.title

@@ -9,6 +9,7 @@
 
 <div id="editor-container" style="font-family: 华文楷体">
 </div>
+    <a href="{% url 'article:modify' article.id %}">修改</a>
 {% endblock %}
 
 {% block customer_js %}
@@ -24,6 +25,6 @@ var quill = new Quill('#editor-container', {
   placeholder: 'Compose an epic...',
   theme: 'snow'  // or 'bubble'
 });
-quill.setContents({{ content|safe }})
+quill.setContents({{ article.content|safe }})
 </script>
 {% endblock %}
