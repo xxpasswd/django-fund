@@ -12,7 +12,7 @@ def add_to_user_have(modeladmin, request, queryset):
         try:
             UserFund.objects.create(code=q, user=user, status=1)
         except IntegrityError:
-            pass
+            UserFund.objects.filter(code=q).update(status=1)
 
 
 def add_to_user_monitor(modeladmin, request, queryset):
@@ -21,7 +21,7 @@ def add_to_user_monitor(modeladmin, request, queryset):
         try:
             UserFund.objects.create(code=q, user=user, status=2)
         except IntegrityError:
-            pass
+            UserFund.objects.filter(code=q).update(status=2)
 
 
 @admin.register(Fund)
