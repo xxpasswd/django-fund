@@ -6,5 +6,5 @@ from .views import FundIndexView
 
 
 urlpatterns = [
-    path('', FundIndexView.as_view(), name='index'),
+    path('', FundIndexView.as_view(), name='index')
     ]

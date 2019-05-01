@@ -23,8 +23,13 @@ class FundDetail(models.Model):
 
 
 class UserFund(models.Model):
+    FUND_CHOICE = (
+        (1, '拥有'),
+        (2, '监控'),
+        (3, '其他')
+    )
     code = models.OneToOneField(Fund, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    status = models.IntegerField(default=1, choices=FUND_CHOICE)
     is_valid = models.BooleanField(default=True)
-    monitor = models.BooleanField(default=True)
     add_time = models.DateTimeField(default=datetime.now)

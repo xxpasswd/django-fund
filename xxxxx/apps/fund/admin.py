@@ -6,11 +6,20 @@ from .models import Fund, UserFund, FundDetail
 # Register your models here.
 
 
-def add_to_user_fund(modeladmin, request, queryset):
+def add_to_user_have(modeladmin, request, queryset):
     user = request.user
     for q in queryset:
         try:
-            UserFund.objects.create(code=q, user=user)
+            UserFund.objects.create(code=q, user=user, status=1)
+        except IntegrityError:
+            pass
+
+
+def add_to_user_monitor(modeladmin, request, queryset):
+    user = request.user
+    for q in queryset:
+        try:
+            UserFund.objects.create(code=q, user=user, status=2)
         except IntegrityError:
             pass
 
@@ -19,18 +28,15 @@ def add_to_user_fund(modeladmin, request, queryset):
 class FundAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'is_valid')
     list_editable = ('is_valid',)
-    actions = [add_to_user_fund]
-    pass
-
-
-class FundDetailAdmin(admin.ModelAdmin):
+    actions = [add_to_user_have, add_to_user_monitor]
     pass
 
 
 class UserFundAdmin(admin.ModelAdmin):
-    list_display = ('code', 'user', 'is_valid')
+    list_display = ('code', 'user', 'status', 'is_valid')
+    list_editable = ('status',)
 
 
 # admin.site.register(Fund, FundAdmin)
-admin.site.register(FundDetail, FundDetailAdmin)
+admin.site.register(FundDetail)
 admin.site.register(UserFund, UserFundAdmin)
