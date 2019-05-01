@@ -36,7 +36,7 @@ server {
 }
 EOF
 
-ln -sf default /etc/nginx/sites-enabled/default
+ln -sf /default /etc/nginx/sites-enabled/default
 
 service nginx restart
 
