@@ -7,7 +7,7 @@ from user.models import UserProfile
 
 
 class Fund(models.Model):
-    code = models.CharField(max_length=10, help_text='基金code')
+    code = models.CharField(max_length=10, unique=True, help_text='基金code')
     name = models.CharField(max_length=30, blank=True, null=True, help_text='基金名称')
     is_valid = models.BooleanField(default=True)
     add_time = models.DateTimeField(default=datetime.now)
