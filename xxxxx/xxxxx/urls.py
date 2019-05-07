@@ -29,7 +29,7 @@ urlpatterns = [
     path(r'captcha/', include('captcha.urls')),
 
     # path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('', RedirectView.as_view(url='fund/', permanent=True)),
+    path('', RedirectView.as_view(url='fund/')),
     path('fund/', include(('fund.urls', 'fund'), namespace='fund')),
 
     path('article/', include(('article.urls', 'article'), namespace='article'))
