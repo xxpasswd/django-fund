@@ -35,6 +35,7 @@ class FundAdmin(admin.ModelAdmin):
 class UserFundAdmin(admin.ModelAdmin):
     list_display = ('code', 'user', 'status', 'is_valid')
     list_editable = ('status',)
+    ordering = ('status', )
 
 
 # admin.site.register(Fund, FundAdmin)
